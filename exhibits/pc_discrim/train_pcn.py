@@ -3,6 +3,7 @@ import sys, getopt as gopt, optparse, time
 from pcn_model import PCN ## bring in model from museum
 ## bring in ngc-learn analysis tools
 from ngclearn.utils.metric_utils import measure_ACC, measure_CatNLL
+import numpy as np
 
 """
 ################################################################################
@@ -52,7 +53,8 @@ Ydev = jnp.load(devY)
 x_dim = _X.shape[1]
 patch_shape = (int(jnp.sqrt(x_dim)), int(jnp.sqrt(x_dim)))
 y_dim = _Y.shape[1]
-
+print(F"shapes of X  {_X.shape} and Y: {_Y.shape}")
+print(F"standard deviation of X  {np.std(_X)} and mean of X {np.mean(_X)}")
 n_iter = 100
 mb_size = 250
 n_batches = int(_X.shape[0]/mb_size)
