@@ -5,6 +5,7 @@ from pcn_model import PCN ## bring in model from museum
 from ngclearn.utils.metric_utils import measure_ACC, measure_CatNLL
 import numpy as np
 
+
 """
 ################################################################################
 Predictive Coding Network (PCN) Exhibit File:
@@ -27,10 +28,18 @@ options, remainder = gopt.getopt(sys.argv[1:], '',
                                  ["dataX=", "dataY=", "devX=", "devY=", "verbosity="]
                                  )
 # external dataset arguments
+'''
 dataX = "../../data/mnist/trainX.npy"
 dataY = "../../data/mnist/trainY.npy"
 devX = "../../data/mnist/validX.npy"
 devY = "../../data/mnist/validY.npy"
+
+'''
+dataX = "/home/ni/Downloads/cifar-10-batches-py/my_conversion/completed/train_images.npy"
+dataY = "/home/ni/Downloads/cifar-10-batches-py/my_conversion/completed/train_labels.npy"
+devX = "/home/ni/Downloads/cifar-10-batches-py/my_conversion/completed/test_images.npy"
+devY = "/home/ni/Downloads/cifar-10-batches-py/my_conversion/completed/test_labels.npy"
+
 verbosity = 0 ## verbosity level (0 - fairly minimal, 1 - prints multiple lines on I/O)
 for opt, arg in options:
     if opt in ("--dataX"):
@@ -53,8 +62,14 @@ Ydev = jnp.load(devY)
 x_dim = _X.shape[1]
 patch_shape = (int(jnp.sqrt(x_dim)), int(jnp.sqrt(x_dim)))
 y_dim = _Y.shape[1]
+
+
 print(F"shapes of X  {_X.shape} and Y: {_Y.shape}")
 print(F"standard deviation of X  {np.std(_X)} and mean of X {np.mean(_X)}")
+print(F"standard deviation of Y  {np.std(_Y)} and mean of Y {np.mean(_Y)}")
+print(F"shapes of devX  {Xdev.shape} and devY: {Ydev.shape}")
+print(F"standard deviation of devX  {np.std(Xdev)} and mean of devX {np.mean(Xdev)}")
+print(F"standard deviation of devY  {np.std(Ydev)} and mean of devX {np.mean(Ydev)}")
 n_iter = 100
 mb_size = 250
 n_batches = int(_X.shape[0]/mb_size)
