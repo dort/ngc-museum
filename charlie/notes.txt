@@ -1,0 +1,13 @@
+2025.09.04 3:19pm
+
+I've been trying to figure out how to load cifar data into the pc_discrim exhibit here for the past hour or so, and with chatgpt's help I at least got the train_pcn.py file to now load the npy files that came from the cifar dataset without an error about reading the wrong type of file when fetching from disk.
+
+I'm working with cifar-10 (python version) so downloaded from this link: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+
+and then converted with the cifar_converter.py script (make a folder inside the resulting cifar-10-batches-py/ folder after
+tar xzvf cifar-10-python.tar.gz
+gets run and then inside that folder put the cifar_converter.py script and make another completed/ directory inside there to generate the npy files that will get successfully loaded)
+
+that's all progress but it's not actually succeeding when running (which is not surprising as chatgpt didn't understand exactly what's needed (nor do i yet) with respect to how the files are "constructed" to set up the training so that it'll work)
+
+more to come...
